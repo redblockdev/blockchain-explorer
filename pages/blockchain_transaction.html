@@ -112,8 +112,8 @@
 					updateText('transaction.timestamp', formatDate(block.timestamp));
 					$(".transaction-timeago").timeago('update', new Date(block.timestamp * 1000).toISOString());
 				}
-                updateText('transaction.amount_out', getReadableCoins(details.amount_out, 8));
-                updateText('transaction.fee', getReadableCoins(details.fee, 8));
+                updateText('transaction.amount_out', getReadableCoins(details.amount_out, 3));
+                updateText('transaction.fee', getReadableCoins(details.fee, 3));
                 updateText('transaction.mixin', details.mixin);
                 if (!details.mixin)
                     $('#div_transaction_mixin').hide();
