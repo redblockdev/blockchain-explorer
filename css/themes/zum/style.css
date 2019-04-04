@@ -79,8 +79,12 @@ body {
 
 footer{
 	background: transparent;
-	padding-top: 25px;
-	padding-bottom: 25px;
+	padding-top: -25px;
+    padding-bottom: -50px;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 table td {
@@ -188,4 +192,33 @@ thead {
 .copyright-text span {
     display: block;
     color: #8284a5;
+}
+
+
+/* API */
+.return{
+    padding: 10px 15px;
+    background: linear-gradient(0deg,rgba(5,10,20,0.5),rgba(0,0,0,0.5));
+    border: #46bded solid 1px;
+    border-radius: 5px;
+}
+.return span{
+    display: block;
+    color: #777;
+}
+
+/* BLOCK */
+.data{
+    padding: 2%;
+        background: linear-gradient(0deg,rgba(5,10,20,0.5),rgba(0,0,0,0.5));
+    border-left: 7px solid #5509a0;
+}
+.data>span{
+    float: right;
+}
+.modal-block {
+    background-color: #0C102D;
+}
+.dtr-none{
+    display: none !important;
 }
