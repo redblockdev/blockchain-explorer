@@ -1,8 +1,8 @@
-var api = 'http://157.230.81.24:17935';
+var api = 'http://127.0.0.1:17935';
 var donationAddress = "";
 var blockTargetInterval = 120;
 var coinUnits = 100000000;
-var symbol = 'zum';
+var symbol = 'ZUM';
 var refreshDelay = 30000;
 // pools stats by MainCoins
 var networkStat = {
