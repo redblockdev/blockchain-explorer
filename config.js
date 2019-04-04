@@ -1,4 +1,4 @@
-var api = 'http://127.0.0.1:17935';
+var api = 'http://explorer.zumcoin.org:17935';
 var donationAddress = "";
 var blockTargetInterval = 120;
 var coinUnits = 100000000;
