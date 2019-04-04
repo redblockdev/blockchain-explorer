@@ -64,8 +64,8 @@
 
     function getTransactionCells(transaction){
         return '<td>' + formatPaymentLink(transaction.hash) + '</td>' +
-               '<td>' + getReadableCoins(transaction.fee, 4, true) + '</td>' +
-               '<td>' + getReadableCoins(transaction.amount_out, 4, true) + '</td>' +
+               '<td>' + getReadableCoins(transaction.fee, 3, true) + '</td>' +
+               '<td>' + getReadableCoins(transaction.amount_out, 3, true) + '</td>' +
                '<td>' + localizeNumber(transaction.size) + '</td>';
     }
 
