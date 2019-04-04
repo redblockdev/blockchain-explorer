@@ -80,7 +80,7 @@ function getReadableHashRateString(hashrate){
 function getReadableDifficultyString(difficulty, precision){
     if (isNaN(parseFloat(difficulty)) || !isFinite(difficulty)) return 0;
     if (typeof precision === 'undefined') precision = 0;
-    var units = ['', 'k', 'M', 'G', 'T', 'P'],
+    var units = [' H', ' kH', ' MH', ' GH', ' TH', ' PH', ' EH', ' ZH', ' YH'],
         number = Math.floor(Math.log(difficulty) / Math.log(1000));
     if (units[number] === undefined || units[number] === null) {
         return 0
