@@ -14,7 +14,7 @@ Block explorer for ZumCoin CryptoNote based cryptocurrency.
 Devs:
     @devopsralf
 
-Donate: [ZUM] Zum1ciVt3UDGr5XwUpvdeNbG5c7ufBLPR85hY43gGXMqcuM2y4ZNBQdEBAj76BqdtjHuCnbDRZWdoQkAbs5MMCbubsyHS5T787E
+Donate: [ZUM] Zum1yfTYqJx1Luiz7g9ek4jnohFM61YhKNJ4JUF4UipPPsttMEY4AVhaMp3QWY8ktLV7rQsJf5G23HZYZCETzMnbMdCceVUitW2
 
 ### Note
 
