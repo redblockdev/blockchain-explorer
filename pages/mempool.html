@@ -1,0 +1,117 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-spinner fa-fw" aria-hidden="true"></i> Transactions Memory Pool
+            <span id="mempool_count" class="badge"></span>
+            <span class="text-default" data-toggle="tooltip" data-placement="right" data-original-title="Recent transactions waiting to be included into a block. Once it happens a transaction gets into the blockchain and becomes confirmed."><i class="fa fa-question-circle"></i></span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-hover" id="mem_pool_table">
+                <thead>
+                    <tr>
+                        <!-- <th width="30%"><i class="fa fa-clock-o"></i> Date &amp; time</th> Add this back when mempool json adds a-->
+                        <th width="20%"><i class="fa fa-money"></i> Amount</th>
+                        <th width="15%"><i class="fa fa-tag"></i> Fee</th>
+                        <th width="15%"><i class="fa fa-archive"></i> Size</th>
+                        <th width="50%"><i class="fa fa-paw"></i> Hash</th>
+                    </tr>
+                </thead>
+                <tbody id="mem_pool_rows">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var block,
+        Difficulties = [],
+        Blocks = [],
+        Rewards = [],
+        Txses = [],
+        Sizes = [],
+        Timestamps = [],
+        diffChart;
+
+    currentPage = {
+        destroy: function() {
+            if (xhrGetBlocks) xhrGetBlocks.abort();
+        },
+        init: function() {
+            $.when(
+                // renderInitialBlocks()
+            ).then(function() {
+                setTimeout(function() {
+                    // displayDiffChart();
+                    // refreshChart();
+                }, 500)
+            });
+        },
+        update: function() {
+        
+            getPoolTransactions();
+
+        }
+    };
+
+    //  Zum MemPool Transactions
+    function getPoolTransactions() {
+        var xhrGetPool = $.ajax({
+            url: api + '/json_rpc',
+            method: "POST",
+            data: JSON.stringify({
+                jsonrpc:"2.0",
+                id: "test",
+                method:"f_on_transactions_pool_json",
+                params: {}
+            }),
+            dataType: 'text',
+            cache: 'false',
+            success: function(data) {
+                var txsRows = document.getElementById('mem_pool_rows');
+                while (txsRows.firstChild) {
+                    txsRows.removeChild(txsRows.firstChild);
+                }
+
+                var rawTxs = data.split('"transactions":').pop();
+                rawTxs = rawTxs.split('}}')[0];
+                var transactions = JSON.parse(rawTxs);
+                var txsArray = [];
+                txsArray = rawTxs.split('\n\n');
+                for(var tx in transactions) {
+                    var hash = transactions[tx].hash;
+                    if(hash != "") {
+                        var amount = transactions[tx].amount_out;
+                        var fee = transactions[tx].fee;
+                        var size = transactions[tx].size;
+                        var row = document.createElement('tr');
+                        var timestamp = Date().now; // this is not yet part of the json that gets returned in f_transactions_pool_json, leave for now
+                        var columns =
+                            /*'<td>' + formatDate(timestamp) + ' (<span class="mtx-ago"></span>)' + '</td>' +*/
+                            '<td>' + getReadableCoins(amount, 4, true) + '</td>' +
+                            '<td>' + getReadableCoins(fee, 4, true) + '</td>' +
+                            '<td>' + localizeNumber(size) + '</td>' +
+                            '<td>' + formatPaymentLink(hash) + '</td>';
+                        row.innerHTML = columns;
+                        $(txsRows).append(row);
+                        //$(row).find('.mtx-ago').timeago('update', new Date(timestamp * 1000).toISOString()); We can re-enable this after a timestamp is added to the mem_pool json
+                    }
+                }
+                updateText('mempool_count', document.querySelectorAll('#mem_pool_rows tr').length);
+            },
+            error: function(data) {console.log(data);}
+        });
+    };
+
+    
+
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
+</script>
+
+<script src="./js/Chart.bundle.min.js"></script>
