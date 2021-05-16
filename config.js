@@ -7,16 +7,16 @@ var refreshDelay = 30000;
 // pools stats by MainCoins
 var networkStat = {
  "zum": [
-	["pool.zumcoin.org", "http://134.209.219.115:8117"],
-	["MiningCache.com", "http://miningcache.com:8117"],
-	["zum.simpool.xyz", "https://crypto9coin.cf:17938"],
-	["zum.crypto9coin.cf", "http://zum.simpool.xyz:6557"],
+	["fastpool.xyz/zum", "https://fastpool.xyz/api-zum"],
+	["zum.pool-pay.com", "https://zum.pool-pay.com:8219"],
+	["zum.letshash.online", "https://letshash.online:15090"],
+	// ["zum.crypto9coin.cf", "http://zum.simpool.xyz:6557"],
 
  ]
 };
 
 var networkStat2 = {
     "zum": [
-	[""]
+	["semipool.com", "https://webzum.semipool.com/api"]
  ]
 };
